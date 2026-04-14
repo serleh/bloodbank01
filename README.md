@@ -1,16 +1,34 @@
-# React + Vite
+# Blood Bank
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The number of people in need of blood is increasing day by day. **Blood Bank** is designed to connect patients with potential donors quickly and efficiently.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This platform allows users to find blood donors based on blood group and location. Donors can easily register by providing their complete details, making it simple for those in need to reach them within the same city.
 
-## React Compiler
+With **Blood Bank**, saving lives becomes faster, easier, and more organized.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+This project includes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- [ ] **Donor Registration** - Allow new donors to register by providing personal details and blood group.
+- [ ] **Modify Donor Information** - Enables registered donors to update their information.
+- [ ] **Donor Search** - Quickly find donors by blood group and city.
+- [ ] **Life Saving Contacts** - Access important emergency contacts available in major cities.
+- [ ] **Emergency Broadcast System** - Notify nearby donors instantly during urgent blood requirements.
+
+## Running the Project
+
+1. Clone the repository
+2. cd bloodbank
+3. npm install
+4. npm run dev
+
+## Dependencies
+
+- React
+- Tailwind Css
+- MongoDB
+- Axios
+- Node.js(Express)

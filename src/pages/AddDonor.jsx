@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 
+const initialState = {
+  name: "",
+  address: "",
+  city: "",
+  gender: "",
+  weight: "",
+  dob: "",
+  bloodGroup: "",
+  phone: "",
+  email: "",
+  lastDonation: "",
+  medicalCondition: "",
+};
 const AddDonor = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    address: "",
-    city: "",
-    gender: "",
-    weight: "",
-    dob: "",
-    bloodGroup: "",
-    phone: "",
-    email: "",
-    lastDonation: "",
-    medicalCondition: "",
-  });
+  const [donors, setDonors] = useState([]);
+  const [formData, setFormData] = useState(initialState);
 
   const handleChange = (e) => {
     setFormData({
@@ -24,7 +26,13 @@ const AddDonor = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    const newDonor = {
+      ...formData,
+    };
+    setDonors([...donors, newDonor]);
+
+    setFormData(initialState);
   };
 
   return (
@@ -43,6 +51,7 @@ const AddDonor = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              required
               className="w-full border p-3 rounded-lg mt-1 focus:ring-2 focus:ring-red-500 outline-none"
             />
           </div>
@@ -55,6 +64,7 @@ const AddDonor = () => {
               name="address"
               value={formData.address}
               onChange={handleChange}
+              required
               className="w-full border p-3 rounded-lg mt-1"
             />
           </div>
@@ -68,6 +78,7 @@ const AddDonor = () => {
                 name="city"
                 value={formData.city}
                 onChange={handleChange}
+                required
                 className="w-full border p-3 rounded-lg mt-1"
               />
             </div>
@@ -79,6 +90,7 @@ const AddDonor = () => {
                 name="weight"
                 value={formData.weight}
                 onChange={handleChange}
+                required
                 className="w-full border p-3 rounded-lg mt-1"
               />
             </div>
@@ -95,6 +107,7 @@ const AddDonor = () => {
                   value="male"
                   checked={formData.gender === "male"}
                   onChange={handleChange}
+                  required
                 />
                 Male
               </label>
@@ -106,6 +119,7 @@ const AddDonor = () => {
                   value="female"
                   checked={formData.gender === "female"}
                   onChange={handleChange}
+                  required
                 />
                 Female
               </label>
@@ -121,6 +135,7 @@ const AddDonor = () => {
                 name="dob"
                 value={formData.dob}
                 onChange={handleChange}
+                required
                 className="w-full border p-3 rounded-lg mt-1"
               />
             </div>
@@ -131,6 +146,7 @@ const AddDonor = () => {
                 name="bloodGroup"
                 value={formData.bloodGroup}
                 onChange={handleChange}
+                required
                 className="w-full border p-3 rounded-lg mt-1"
               >
                 <option value="">Select</option>
@@ -155,6 +171,7 @@ const AddDonor = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
+                required
                 className="w-full border p-3 rounded-lg mt-1"
               />
             </div>
@@ -166,6 +183,7 @@ const AddDonor = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                required
                 className="w-full border p-3 rounded-lg mt-1"
               />
             </div>

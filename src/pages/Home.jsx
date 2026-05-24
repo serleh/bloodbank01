@@ -3,6 +3,7 @@ import hero from "../assets/bloodd.jpg";
 import team from "../assets/team.png";
 import location from "../assets/location.png";
 import clock from "../assets/clock.png";
+import Button from "../components/designLibrary/Button";
 
 const Home = () => {
   return (
@@ -22,12 +23,8 @@ const Home = () => {
 
           {/* CTA Buttons */}
           <div className="mt-6 flex gap-4">
-            <button className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition">
-              Find Donor
-            </button>
-            <button className="border border-red-600 text-red-600 px-6 py-2 rounded-lg hover:bg-red-600 hover:text-white transition">
-              Become Donor
-            </button>
+            <Button>Find Donor</Button>
+            <Button variant="secondary">Become Donor</Button>
           </div>
         </div>
 
@@ -101,9 +98,7 @@ const Home = () => {
               className="border p-3 rounded-lg w-full md:w-1/3"
             />
 
-            <button className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition">
-              Search
-            </button>
+            <Button>Search</Button>
           </div>
         </div>
       </div>
@@ -184,9 +179,9 @@ const Home = () => {
           Join thousands of donors and make a difference
         </p>
 
-        <button className="mt-6 bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">
+        <Button variant="secondary" className=" mt-6 px-6 py-3 font-semibold ">
           Register Now
-        </button>
+        </Button>
       </div>
     </section>
   );

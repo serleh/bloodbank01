@@ -1,0 +1,103 @@
+{
+  "donors": [
+    {
+      "id": "1",
+      "name": "Ahmad Musa",
+      "city": "Kano",
+      "bloodGroup": "O+",
+      "phone": "08030000001"
+    },
+    {
+      "id": "2",
+      "name": "Fatima Bello",
+      "city": "Kano",
+      "bloodGroup": "A+",
+      "phone": "08030000002"
+    },
+    {
+      "id": "3",
+      "name": "Ibrahim Sadiq",
+      "city": "Kano",
+      "bloodGroup": "O-",
+      "phone": "08030000003"
+    },
+    {
+      "id": "4",
+      "name": "Zainab Abdullahi",
+      "city": "Abuja",
+      "bloodGroup": "B+",
+      "phone": "08030000004"
+    },
+    {
+      "id": "5",
+      "name": "Usman Lawal",
+      "city": "Abuja",
+      "bloodGroup": "AB+",
+      "phone": "08030000005"
+    },
+    {
+      "id": "6",
+      "name": "Maryam Yusuf",
+      "city": "Kano",
+      "bloodGroup": "AB-",
+      "phone": "08030000006"
+    },
+    {
+      "name": "Saleh Abdullahi",
+      "address": "Kwanar Ganduje",
+      "city": "Kano",
+      "gender": "female",
+      "weight": "44",
+      "dob": "2026-05-30",
+      "bloodGroup": "B+",
+      "phone": "08096062713",
+      "email": "salehabdullahi018@gmail.com",
+      "lastDonation": "2026-05-27",
+      "medicalCondition": "None",
+      "id": "LGcCnTl1n4c"
+    },
+    {
+      "name": "Saleh Abdullahij",
+      "address": "Kwanar Ganduje",
+      "city": "Kano",
+      "gender": "male",
+      "weight": "44",
+      "dob": "2026-05-15",
+      "bloodGroup": "O+",
+      "phone": "08096062713",
+      "email": "salehabdullahi018@gmail.com",
+      "lastDonation": "2026-05-29",
+      "medicalCondition": "xvfv",
+      "id": "yFQjs6-aLqw"
+    },
+    {
+      "name": "Saleh Abdullahi",
+      "address": "Kwanar Ganduje",
+      "city": "Kano",
+      "gender": "female",
+      "weight": "222",
+      "dob": "2026-05-15",
+      "bloodGroup": "O+",
+      "phone": "08096062713",
+      "email": "salehabdullahi018@gmail.com",
+      "lastDonation": "2026-05-27",
+      "medicalCondition": "None",
+      "id": "w0pslx7muC4"
+    },
+    {
+      "name": "Auwal ISah",
+      "address": "Kwanar Ganduje",
+      "city": "Kano",
+      "gender": "female",
+      "weight": "99",
+      "dob": "2026-05-02",
+      "bloodGroup": "B+",
+      "phone": "08096062713",
+      "email": "salehabdullahi018@gmail.com",
+      "lastDonation": "2026-05-30",
+      "medicalCondition": "None",
+      "id": "Qav7jmwBaeU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

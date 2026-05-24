@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import donorService from "../services/donors";
+import Button from "../components/designLibrary/Button";
 
 const initialState = {
   name: "",
@@ -24,15 +26,18 @@ const AddDonor = () => {
     });
   };
 
+  // Add donor while submitting the form
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newDonor = {
       ...formData,
     };
-    setDonors([...donors, newDonor]);
 
-    setFormData(initialState);
+    donorService.create(newDonor).then((returnedDonor) => {
+      setDonors(returnedDonor);
+      setFormData(initialState);
+    });
   };
 
   return (
@@ -218,9 +223,8 @@ const AddDonor = () => {
           </div>
 
           {/* BUTTON */}
-          <button className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition">
-            Submit
-          </button>
+
+          <Button className="w-full font-semibold">Submit</Button>
         </form>
       </div>
     </section>

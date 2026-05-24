@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "./designLibrary/Button";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="bg-white-600 text-black shadow-md sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between">
         {/* Logo */}
         <h1 className="text-xl md:text-2xl font-bold">
           🩸 <span className="ml-1">BloodBank</span>
@@ -23,12 +24,14 @@ const Header = () => {
         </div>
 
         {/* Mobile Button */}
-        <button
+
+        <Button
+          variant="empty"
           className="md:hidden text-2xl"
           onClick={() => setIsOpen(!isOpen)}
         >
           ☰
-        </button>
+        </Button>
       </nav>
 
       {/* Mobile Menu */}

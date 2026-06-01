@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import donorService from "../services/donors";
 import Button from "../components/designLibrary/Button";
 import Input from "../components/designLibrary/Input";
+import Select from "../components/designLibrary/Select";
+import { bloodGroupOptions } from "../constants/bloodGroup";
 
 const initialState = {
   name: "",
@@ -136,36 +138,27 @@ const AddDonor = () => {
           {/* DOB + BLOOD GROUP */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium">Date of Birth</label>
-              <input
+              <Input
+                id="name"
+                label="Date of Birth"
                 type="date"
                 name="dob"
                 value={formData.dob}
                 onChange={handleChange}
                 required
-                className="w-full border p-3 rounded-lg mt-1"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium">Blood Group</label>
-              <select
+              <Select
+                id="name"
+                label="Blood Group"
                 name="bloodGroup"
                 value={formData.bloodGroup}
                 onChange={handleChange}
                 required
-                className="w-full border p-3 rounded-lg mt-1"
-              >
-                <option value="">Select</option>
-                <option>A+</option>
-                <option>B+</option>
-                <option>O+</option>
-                <option>AB+</option>
-                <option>A-</option>
-                <option>B-</option>
-                <option>O-</option>
-                <option>AB-</option>
-              </select>
+                options={bloodGroupOptions}
+              />
             </div>
           </div>
 

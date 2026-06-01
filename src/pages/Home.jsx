@@ -4,6 +4,7 @@ import team from "../assets/team.png";
 import location from "../assets/location.png";
 import clock from "../assets/clock.png";
 import Button from "../components/designLibrary/Button";
+import Input from "../components/designLibrary/Input";
 
 const Home = () => {
   return (
@@ -92,8 +93,7 @@ const Home = () => {
               <option>AB+</option>
             </select>
 
-            <input
-              type="text"
+            <Input
               placeholder="Enter city"
               className="border p-3 rounded-lg w-full md:w-1/3"
             />

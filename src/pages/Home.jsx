@@ -4,6 +4,9 @@ import team from "../assets/team.png";
 import location from "../assets/location.png";
 import clock from "../assets/clock.png";
 import Button from "../components/designLibrary/Button";
+import Input from "../components/designLibrary/Input";
+import Select from "../components/designLibrary/Select";
+import { bloodGroupOptions } from "../constants/bloodGroup";
 
 const Home = () => {
   return (
@@ -84,16 +87,13 @@ const Home = () => {
 
           {/* SEARCH FORM */}
           <div className="mt-6 flex flex-col md:flex-row gap-4 justify-center">
-            <select className="border p-3 rounded-lg w-full md:w-1/3">
-              <option>Blood Group</option>
-              <option>A+</option>
-              <option>B+</option>
-              <option>O+</option>
-              <option>AB+</option>
-            </select>
+            <Select
+              id="bloodGroup"
+              options={bloodGroupOptions}
+              className="md:w-1/3"
+            />
 
-            <input
-              type="text"
+            <Input
               placeholder="Enter city"
               className="border p-3 rounded-lg w-full md:w-1/3"
             />

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import donorService from "../services/donors";
 import Button from "../components/designLibrary/Button";
+import Input from "../components/designLibrary/Input";
+import Select from "../components/designLibrary/Select";
+import { bloodGroupOptions } from "../constants/bloodGroup";
 
 const initialState = {
   name: "",
@@ -50,53 +53,51 @@ const AddDonor = () => {
         <form onSubmit={handleSubmit} className="mt-6 space-y-5">
           {/* NAME */}
           <div>
-            <label className="block text-sm font-medium">Full Name</label>
-            <input
+            <Input
+              id="name"
+              label="Full Name"
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full border p-3 rounded-lg mt-1 focus:ring-2 focus:ring-red-500 outline-none"
             />
           </div>
 
           {/* ADDRESS */}
           <div>
-            <label className="block text-sm font-medium">Address</label>
-            <input
-              type="text"
+            <Input
+              id="name"
+              label="Address"
               name="address"
               value={formData.address}
               onChange={handleChange}
               required
-              className="w-full border p-3 rounded-lg mt-1"
             />
           </div>
 
           {/* CITY + WEIGHT */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium">City</label>
-              <input
-                type="text"
+              <Input
+                id="name"
+                label="City"
                 name="city"
                 value={formData.city}
                 onChange={handleChange}
                 required
-                className="w-full border p-3 rounded-lg mt-1"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium">Weight (kg)</label>
-              <input
+              <Input
+                id="name"
+                label="Weight (Kg)"
                 type="number"
                 name="weight"
                 value={formData.weight}
                 onChange={handleChange}
                 required
-                className="w-full border p-3 rounded-lg mt-1"
               />
             </div>
           </div>
@@ -104,27 +105,30 @@ const AddDonor = () => {
           {/* GENDER */}
           <div>
             <label className="block text-sm font-medium mb-2">Gender</label>
+
             <div className="flex gap-6">
               <label className="flex items-center gap-2">
-                <input
+                <Input
                   type="radio"
                   name="gender"
                   value="male"
                   checked={formData.gender === "male"}
                   onChange={handleChange}
                   required
+                  className="w-auto"
                 />
                 Male
               </label>
 
               <label className="flex items-center gap-2">
-                <input
+                <Input
                   type="radio"
                   name="gender"
                   value="female"
                   checked={formData.gender === "female"}
                   onChange={handleChange}
                   required
+                  className="w-auto"
                 />
                 Female
               </label>
@@ -134,96 +138,81 @@ const AddDonor = () => {
           {/* DOB + BLOOD GROUP */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium">Date of Birth</label>
-              <input
+              <Input
+                id="name"
+                label="Date of Birth"
                 type="date"
                 name="dob"
                 value={formData.dob}
                 onChange={handleChange}
                 required
-                className="w-full border p-3 rounded-lg mt-1"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium">Blood Group</label>
-              <select
+              <Select
+                id="name"
+                label="Blood Group"
                 name="bloodGroup"
                 value={formData.bloodGroup}
                 onChange={handleChange}
                 required
-                className="w-full border p-3 rounded-lg mt-1"
-              >
-                <option value="">Select</option>
-                <option>A+</option>
-                <option>B+</option>
-                <option>O+</option>
-                <option>AB+</option>
-                <option>A-</option>
-                <option>B-</option>
-                <option>O-</option>
-                <option>AB-</option>
-              </select>
+                options={bloodGroupOptions}
+              />
             </div>
           </div>
 
           {/* PHONE + EMAIL */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium">Phone</label>
-              <input
+              <Input
+                id="name"
+                label="Phone"
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 required
-                className="w-full border p-3 rounded-lg mt-1"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium">Email</label>
-              <input
+              <Input
+                id="name"
+                label="Email"
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full border p-3 rounded-lg mt-1"
               />
             </div>
           </div>
 
           {/* LAST DONATION */}
           <div>
-            <label className="block text-sm font-medium">
-              Last Donation Date
-            </label>
-            <input
+            <Input
+              id="name"
+              label="Last Donation Date"
               type="date"
               name="lastDonation"
               value={formData.lastDonation}
               onChange={handleChange}
-              className="w-full border p-3 rounded-lg mt-1"
             />
           </div>
 
           {/* MEDICAL CONDITION */}
           <div>
-            <label className="block text-sm font-medium">
-              Medical Condition (if any)
-            </label>
-            <input
-              type="text"
+            <Input
+              id="name"
+              label="Medical Condition (if any)"
               name="medicalCondition"
               value={formData.medicalCondition}
               onChange={handleChange}
-              className="w-full border p-3 rounded-lg mt-1"
             />
           </div>
 
           {/* BUTTON */}
-
           <Button className="w-full font-semibold">Submit</Button>
         </form>
       </div>

@@ -10,18 +10,14 @@ const variants = {
 
 const Button = ({
   children,
-  onClick,
-  type = "button",
-  disabled = false,
   className = "",
   variant = "primary",
+  ...props
 }) => {
   return (
     <button
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
-      className={`px-6 py-2 rounded-lg transition ${variants[variant]} ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`}
+      className={`px-6 py-2 rounded-lg transition ${variants[variant]} ${props.disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`}
+      {...props}
     >
       {children}
     </button>

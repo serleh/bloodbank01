@@ -1,10 +1,15 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3001/donors";
+const baseUrl = "https://bloodbank-backend01.onrender.com/api/donors";
 
-const create = (newDonor) => {
-  const request = axios.post(baseUrl, newDonor);
+const getAll = () => {
+  const request = axios.get(baseUrl);
   return request.then((res) => res.data);
 };
 
-export default { create };
+const add = (newObject) => {
+  const request = axios.post(baseUrl, newObject);
+  return request.then((res) => res.data);
+};
+
+export default { getAll, add };

@@ -1,14 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+
 import hero from "../assets/bloodd.jpg";
-import team from "../assets/team.png";
-import location from "../assets/location.png";
-import clock from "../assets/clock.png";
 import Button from "../components/designLibrary/Button";
 import Input from "../components/designLibrary/Input";
 import Select from "../components/designLibrary/Select";
 import { bloodGroupOptions } from "../constants/bloodGroup";
+import StatCard from "../components/designLibrary/StatCard";
+import { donors, howItWorks, stats } from "../data";
+import HowItWorksCard from "../components/designLibrary/HowItWorksCard";
 
 const Home = () => {
+  const [bloodGroup, setBloodGroup] = useState("");
+  const [city, setCity] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
+  const [results, setResults] = useState([]);
+
+  const handleSearch = () => {
+    if (!bloodGroup || !city) {
+      return;
+    }
+
+    setHasSearched(true);
+    const filtered = donors.filter((donor) => {
+      const matchBloodGroup = bloodGroup
+        ? donor.bloodGroup === bloodGroup
+        : true;
+
+      const matchCity = city
+        ? donor.city.toLowerCase().includes(city.toLowerCase())
+        : true;
+
+      return matchBloodGroup && matchCity;
+    });
+
+    setResults(filtered);
+  };
   return (
     <section className="bg-gray-50">
       {/* HERO SECTION */}
@@ -43,34 +69,15 @@ const Home = () => {
       {/* STATS SECTION */}
       <div className="max-w-7xl mx-auto px-4 pb-10 md:pb-16">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {/* CARD 1 */}
-          <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition text-center">
-            <img src={team} alt="team members" className="w-12 mx-auto mb-3" />
-            <p className="text-xl font-semibold text-gray-800">10,000+</p>
-            <p className="text-gray-500 text-sm">
-              Registered donors across country
-            </p>
-          </div>
-
-          {/* CARD 2 */}
-          <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition text-center">
-            <img src={location} alt="location" className="w-12 mx-auto mb-3" />
-            <p className="text-xl font-semibold text-gray-800">50+ Cities</p>
-            <p className="text-gray-500 text-sm">
-              Coverage across major cities
-            </p>
-          </div>
-
-          {/* CARD 3 */}
-          <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition text-center">
-            <img src={clock} alt="24/7" className="w-12 mx-auto mb-3" />
-            <p className="text-xl font-semibold text-gray-800">
-              24/7 Available
-            </p>
-            <p className="text-gray-500 text-sm">
-              Round-the-clock emergency support
-            </p>
-          </div>
+          {stats.map((stat) => (
+            <StatCard
+              key={stat.title}
+              icon={stat.icon}
+              alt={stat.alt}
+              title={stat.title}
+              description={stat.description}
+            />
+          ))}
         </div>
       </div>
 
@@ -91,17 +98,36 @@ const Home = () => {
               id="bloodGroup"
               options={bloodGroupOptions}
               className="md:w-1/3"
+              value={bloodGroup}
+              onChange={(e) => setBloodGroup(e.target.value)}
             />
 
             <Input
               placeholder="Enter city"
               className="border p-3 rounded-lg w-full md:w-1/3"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
             />
 
-            <Button>Search</Button>
+            <Button onClick={handleSearch}>Search</Button>
           </div>
         </div>
+        {/* RESULTS */}
+        <div className="mt-6">
+          {!hasSearched ? (
+            ""
+          ) : results.length > 0 ? (
+            results.map((donor, index) => (
+              <div key={index}>
+                {donor.name} - {donor.bloodGroup} - {donor.city}
+              </div>
+            ))
+          ) : (
+            <p>No donor found</p>
+          )}
+        </div>
       </div>
+
       {/* Featured donors */}
       <div className="bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4">
@@ -111,18 +137,18 @@ const Home = () => {
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
             {/* CARD */}
-            {[1, 2, 3].map((item) => (
+            {donors.map((donor) => (
               <div
-                key={item}
+                key={donor.id}
                 className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-red-100 text-red-600 flex items-center justify-center rounded-full font-bold">
-                    A+
+                    {donor.bloodGroup}
                   </div>
                   <div>
-                    <p className="font-semibold">John Doe</p>
-                    <p className="text-sm text-gray-500">Abuja</p>
+                    <p className="font-semibold">{donor.name}</p>
+                    <p className="text-sm text-gray-500">{donor.city}</p>
                   </div>
                 </div>
 
@@ -143,29 +169,14 @@ const Home = () => {
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 mt-10">
-            <div>
-              <div className="text-3xl">🔍</div>
-              <h3 className="font-semibold mt-3">Search Donor</h3>
-              <p className="text-gray-500 text-sm mt-1">
-                Find donors by blood group and location
-              </p>
-            </div>
-
-            <div>
-              <div className="text-3xl">📞</div>
-              <h3 className="font-semibold mt-3">Contact</h3>
-              <p className="text-gray-500 text-sm mt-1">
-                Reach out instantly to donors
-              </p>
-            </div>
-
-            <div>
-              <div className="text-3xl">🩸</div>
-              <h3 className="font-semibold mt-3">Save Life</h3>
-              <p className="text-gray-500 text-sm mt-1">
-                Get help when it matters most
-              </p>
-            </div>
+            {howItWorks.map((item) => (
+              <HowItWorksCard
+                key={item.title}
+                icon={item.icon}
+                title={item.title}
+                description={item.description}
+              />
+            ))}
           </div>
         </div>
       </div>

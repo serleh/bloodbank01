@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 import donorService from "../services/donors";
 import Button from "../components/designLibrary/Button";
 import Input from "../components/designLibrary/Input";
@@ -19,8 +20,15 @@ const initialState = {
   medicalCondition: "",
 };
 const AddDonor = () => {
-  const [donors, setDonors] = useState([]);
   const [formData, setFormData] = useState(initialState);
+  const [donors, setDonors] = useState([]);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    donorService.getAll().then((initialDonors) => setDonors(initialDonors));
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -29,18 +37,31 @@ const AddDonor = () => {
     });
   };
 
-  // Add donor while submitting the form
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newDonor = {
-      ...formData,
-    };
+    const newDonor = { ...formData };
 
-    donorService.create(newDonor).then((returnedDonor) => {
-      setDonors(returnedDonor);
-      setFormData(initialState);
-    });
+    donorService
+      .add(newDonor)
+      .then((returnedDonor) => {
+        setDonors((prev) => [...prev, returnedDonor]);
+        setSuccessMessage("Donor added successfully!");
+
+        // clear form data after adding donor
+        setFormData(initialState);
+
+        // hide message after few seconds
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 3000);
+      })
+      .catch((err) => {
+        setErrorMessage("Something went wrong. Try again");
+        setTimeout(() => setErrorMessage(""), 3000);
+        console.error(err);
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -49,7 +70,19 @@ const AddDonor = () => {
         <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800">
           Register as a Blood Donor 🩸
         </h2>
+        {/* SUCCESS TOAST */}
+        {successMessage && (
+          <div className="fixed top-5 right-5 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg animate-bounce z-50">
+            {successMessage}
+          </div>
+        )}
 
+        {/* ERROR TOAST */}
+        {errorMessage && (
+          <div className="fixed top-5 right-5 bg-red-500 text-white px-4 py-3 rounded-lg shadow-lg z-50">
+            {errorMessage}
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="mt-6 space-y-5">
           {/* NAME */}
           <div>
@@ -213,7 +246,13 @@ const AddDonor = () => {
           </div>
 
           {/* BUTTON */}
-          <Button className="w-full font-semibold">Submit</Button>
+          <Button
+            type="submit"
+            className="w-full font-semibold"
+            disabled={loading}
+          >
+            {loading ? "Submitting..." : "Submit"}
+          </Button>
         </form>
       </div>
     </section>

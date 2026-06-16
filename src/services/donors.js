@@ -12,4 +12,10 @@ const add = (newObject) => {
   return request.then((res) => res.data);
 };
 
-export default { getAll, add };
+const search =(params)=>{
+  const query = new URLSearchParams(params).toString()
+
+  return axios.get(`${baseUrl}/search?${query}`).then(res=>res.data)
+}
+
+export default { getAll, add,search };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 
 import donorService from "../services/donors";
 import Button from "../components/designLibrary/Button";
@@ -21,14 +21,14 @@ const initialState = {
 };
 const AddDonor = () => {
   const [formData, setFormData] = useState(initialState);
-  const [donors, setDonors] = useState([]);
+ // const [donors, setDonors] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    donorService.getAll().then((initialDonors) => setDonors(initialDonors));
-  }, []);
+  // useEffect(() => {
+  //   donorService.getAll().then((initialDonors) => setDonors(initialDonors));
+  // }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -39,13 +39,12 @@ const AddDonor = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newDonor = { ...formData };
+    setLoading(true)
+ const newDonor = { ...formData };
 
     donorService
       .add(newDonor)
-      .then((returnedDonor) => {
-        setDonors((prev) => [...prev, returnedDonor]);
+      .then(() => {
         setSuccessMessage("Donor added successfully!");
 
         // clear form data after adding donor
@@ -100,7 +99,7 @@ const AddDonor = () => {
           {/* ADDRESS */}
           <div>
             <Input
-              id="name"
+              id="address"
               label="Address"
               name="address"
               value={formData.address}
@@ -113,7 +112,7 @@ const AddDonor = () => {
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <Input
-                id="name"
+                id="city"
                 label="City"
                 name="city"
                 value={formData.city}
@@ -124,7 +123,7 @@ const AddDonor = () => {
 
             <div>
               <Input
-                id="name"
+                id="weight"
                 label="Weight (Kg)"
                 type="number"
                 name="weight"
@@ -172,7 +171,7 @@ const AddDonor = () => {
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <Input
-                id="name"
+                id="dob"
                 label="Date of Birth"
                 type="date"
                 name="dob"
@@ -184,7 +183,7 @@ const AddDonor = () => {
 
             <div>
               <Select
-                id="name"
+                id="bloodGroup"
                 label="Blood Group"
                 name="bloodGroup"
                 value={formData.bloodGroup}
@@ -199,7 +198,7 @@ const AddDonor = () => {
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <Input
-                id="name"
+                id="phone"
                 label="Phone"
                 type="tel"
                 name="phone"
@@ -211,7 +210,7 @@ const AddDonor = () => {
 
             <div>
               <Input
-                id="name"
+                id="email"
                 label="Email"
                 type="email"
                 name="email"
@@ -225,7 +224,7 @@ const AddDonor = () => {
           {/* LAST DONATION */}
           <div>
             <Input
-              id="name"
+              id="lastDonation"
               label="Last Donation Date"
               type="date"
               name="lastDonation"
@@ -237,7 +236,7 @@ const AddDonor = () => {
           {/* MEDICAL CONDITION */}
           <div>
             <Input
-              id="name"
+              id="medicalCondition"
               label="Medical Condition (if any)"
               name="medicalCondition"
               value={formData.medicalCondition}

@@ -6,25 +6,29 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-white-600 text-black shadow-md sticky top-0 z-50">
+    <header className="bg-white text-black shadow-md sticky top-0 z-50">
       <nav className="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between">
-        {/* Logo */}
+        {/* LOGO */}
         <h1 className="text-xl md:text-2xl font-bold">
           🩸 <span className="ml-1">BloodBank</span>
         </h1>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-6 font-medium">
-          <Link to="/" className="hover:text-gray-200 transition">
+        {/* DESKTOP MENU */}
+        <div className="hidden md:flex items-center gap-6 font-medium">
+          <Link to="/" className="hover:text-red-600 transition">
             Home
           </Link>
-          <Link to="/add-donor" className="hover:text-gray-200 transition">
-            Add Donor
+
+          <Link to="/login" className="hover:text-red-600 transition">
+            Login
+          </Link>
+
+          <Link to="/register">
+            <Button>Register</Button>
           </Link>
         </div>
 
-        {/* Mobile Button */}
-
+        {/* MOBILE BUTTON */}
         <Button
           variant="empty"
           className="md:hidden text-2xl"
@@ -34,22 +38,19 @@ const Header = () => {
         </Button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       {isOpen && (
-        <div className="md:hidden bg-white-500 px-4 pb-4 flex flex-col gap-3">
-          <Link
-            to="/"
-            className="hover:text-gray-200"
-            onClick={() => setIsOpen(false)}
-          >
+        <div className="md:hidden bg-white px-4 pb-4 flex flex-col gap-3">
+          <Link to="/" onClick={() => setIsOpen(false)}>
             Home
           </Link>
-          <Link
-            to="/add-donor"
-            className="hover:text-gray-200"
-            onClick={() => setIsOpen(false)}
-          >
-            Add Donor
+
+          <Link to="/login" onClick={() => setIsOpen(false)}>
+            Login
+          </Link>
+
+          <Link to="/register" onClick={() => setIsOpen(false)}>
+            Register
           </Link>
         </div>
       )}

@@ -7,10 +7,10 @@ const getAll = () => {
   return request.then((res) => res.data);
 };
 
-const add = (newObject) => {
-  const request = axios.post(baseUrl, newObject);
-  return request.then((res) => res.data);
-};
+// const add = (newObject) => {
+//   const request = axios.post(baseUrl, newObject);
+//   return request.then((res) => res.data);
+// };
 
 const search =(params)=>{
   const query = new URLSearchParams(params).toString()
@@ -18,4 +18,4 @@ const search =(params)=>{
   return axios.get(`${baseUrl}/search?${query}`).then(res=>res.data)
 }
 
-export default { getAll, add,search };
+export default { getAll,search };

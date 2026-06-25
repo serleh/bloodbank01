@@ -10,6 +10,7 @@ import StatCard from "../components/designLibrary/StatCard";
 import {  howItWorks, stats } from "../data";
 import HowItWorksCard from "../components/designLibrary/HowItWorksCard";
 import useDonorSearch from "../hooks/useDonorSearch";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [bloodGroup, setBloodGroup] = useState("");
@@ -37,9 +38,17 @@ const Home = () => {
             Connect blood donors with those in need.
           </p>
 
-          <div className="mt-6 flex gap-4">
-            <Button>Find Donor</Button>
+          <div id="search" className="mt-6 flex gap-4">
+          
+
+            <a href="#search">
+            <Button >Find Donor</Button>
+            </a>
+
+              <Link to="/register">
             <Button variant="secondary">Become Donor</Button>
+            </Link>
+            
           </div>
         </div>
 
@@ -56,7 +65,7 @@ const Home = () => {
       </div>
 
       {/* SEARCH */}
-      <div className="bg-white py-10">
+      <div id="#search" className="bg-white py-10">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <h2 className="text-2xl font-bold">Find a Blood Donor</h2>
 
@@ -150,9 +159,11 @@ const Home = () => {
       <div className="bg-red-600 text-white py-12 text-center">
         <h2 className="text-2xl font-bold">Become a Life Saver ❤️</h2>
 
+      <Link to="/register">
         <Button variant="secondary" className="mt-6">
           Register Now
         </Button>
+        </Link>
       </div>
     </section>
   );

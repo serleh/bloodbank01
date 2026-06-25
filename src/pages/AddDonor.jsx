@@ -1,12 +1,16 @@
 import React, {  useState } from "react";
 
-import donorService from "../services/donors";
+//import donorService from "../services/donors";
+import authService from '../services/authService'
 import Button from "../components/designLibrary/Button";
 import Input from "../components/designLibrary/Input";
 import Select from "../components/designLibrary/Select";
 import { bloodGroupOptions } from "../constants/bloodGroup";
 
+
 const initialState = {
+  username:"",
+  password:"",
   name: "",
   address: "",
   city: "",
@@ -25,6 +29,7 @@ const AddDonor = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+ 
 
   // useEffect(() => {
   //   donorService.getAll().then((initialDonors) => setDonors(initialDonors));
@@ -42,8 +47,8 @@ const AddDonor = () => {
     setLoading(true)
  const newDonor = { ...formData };
 
-    donorService
-      .add(newDonor)
+    authService
+      .register(newDonor)
       .then(() => {
         setSuccessMessage("Donor added successfully!");
 
@@ -82,7 +87,30 @@ const AddDonor = () => {
             {errorMessage}
           </div>
         )}
+        
+  
         <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+           <Input
+    id="username"
+    label="Username"
+    type="text"
+    name="username"
+    value={formData.username}
+    onChange={handleChange}
+    required
+  />
+
+  <Input
+    id="password"
+    label="Password"
+    type="password"
+    name="password"
+    value={formData.password}
+    onChange={handleChange}
+    required
+  />
+
+
           {/* NAME */}
           <div>
             <Input

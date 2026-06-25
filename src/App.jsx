@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import AddDonor from "./pages/AddDonor";
 import Header from "./components/Header";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/DashBoard";
 
 const App = () => {
   return (

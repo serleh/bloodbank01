@@ -2,33 +2,95 @@
 
 ## Overview
 
-The number of people in need of blood is increasing day by day. **Blood Bank** is designed to connect patients with potential donors quickly and efficiently.
+Blood Bank is a web application designed to connect people in need of blood with potential donors quickly and efficiently.
 
-This platform allows users to find blood donors based on blood group and location. Donors can easily register by providing their complete details, making it simple for those in need to reach them within the same city.
+Finding a blood donor during emergencies can be challenging. This platform allows users to search for suitable donors based on their blood group and location, making it easier to connect patients with available donors within the same city.
 
-With **Blood Bank**, saving lives becomes faster, easier, and more organized.
+The platform allows donors to create and manage their profiles, ensuring their information remains accurate and accessible when needed.
+
+With Blood Bank, saving lives becomes faster, easier, and more organized.
 
 ## Features
 
-This project includes
+### Current Features
 
-- [ ] **Donor Registration** - Allow new donors to register by providing personal details and blood group.
-- [ ] **Modify Donor Information** - Enables registered donors to update their information.
-- [ ] **Donor Search** - Quickly find donors by blood group and city.
-- [ ] **Life Saving Contacts** - Access important emergency contacts available in major cities.
-- [ ] **Emergency Broadcast System** - Notify nearby donors instantly during urgent blood requirements.
+- Donor Registration
+  Donors can register by providing their personal details, blood group, location, and contact information.
+
+- User Authentication
+  Secure login and authentication system using JWT to protect user accounts.
+
+- Donor Search
+  Users can search for available donors based on blood group and city.
+
+- Modify Donor Information
+  Registered donors can update their personal details, contact information, and donation-related information.
+
+- Donor Profile Management
+  Users can view and manage donor profiles.
+
+- Responsive User Interface
+  A clean and responsive interface built with React and Tailwind CSS.
+
+### Upcoming Features
+
+- Life Saving Contacts
+  Provide emergency contacts for hospitals and blood centers.
+
+- Emergency Broadcast System
+  Send urgent blood requirement notifications to nearby eligible donors.
+
+- Location-Based Matching
+  Improve donor discovery by matching recipients with the closest available donors.
+
+## Tech Stack
+
+### Frontend
+
+- React.js
+- Vite
+- Tailwind CSS
+- Axios
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- bcrypt
+
+## API Features
+
+The backend provides RESTful APIs for:
+
+- User registration and authentication
+- Donor registration
+- Donor profile management
+- Updating donor information
+- Searching donors by blood group and city
 
 ## Running the Project
 
-1. Clone the repository
-2. cd bloodbank
-3. npm install
-4. npm run dev
+### Clone Repository
 
-## Dependencies
+```bash
+git clone <repository-url>
+```
 
-- React
-- Tailwind Css
-- MongoDB
-- Axios
-- Node.js(Express)
+### Frontend Setup
+
+```bash
+cd bloodbank01
+npm install
+npm run dev
+```
+
+## Future Improvements
+
+- Real-time emergency notifications
+- SMS and email alerts
+- Blood donation history tracking
+- Hospital and blood bank integration
+- AI-powered donor recommendations

@@ -11,23 +11,32 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const loggedInUser = await authService.login({ username, password });
-      setUser(loggedInUser);
+      const res = await authService.login({
+        username: username.toLowerCase().trim(),
+        password,
+      });
+
+      localStorage.setItem("token", res.token);
       setUsername("");
       setPassword("");
-      localStorage.setItem("token", loggedInUser.token);
 
       navigate("/dashboard");
     } catch (error) {
-      setErrorMessage("wrong credentials");
+      setErrorMessage(
+        error.response?.data?.error || "wrong username or password",
+      );
       setTimeout(() => setErrorMessage(null), 5000);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -112,8 +121,8 @@ const Login = () => {
               />
             </div>
 
-            <Button type="submit" className="w-full mt-2">
-              Log In
+            <Button type="submit" className="w-full mt-2" disabled={loading}>
+              {loading ? "Logging in..." : "Log In"}
             </Button>
           </form>
 

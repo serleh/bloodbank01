@@ -26,6 +26,7 @@ const Header = () => {
           <Link to="/register">
             <Button>Register</Button>
           </Link>
+          <Link to="/blood-information">Blood Information</Link>
         </div>
 
         {/* MOBILE BUTTON */}

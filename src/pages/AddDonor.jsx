@@ -1,16 +1,15 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 //import donorService from "../services/donors";
-import authService from '../services/authService'
+import authService from "../services/authService";
 import Button from "../components/designLibrary/Button";
 import Input from "../components/designLibrary/Input";
 import Select from "../components/designLibrary/Select";
 import { bloodGroupOptions } from "../constants/bloodGroup";
 
-
 const initialState = {
-  username:"",
-  password:"",
+  username: "",
+  password: "",
   name: "",
   address: "",
   city: "",
@@ -25,15 +24,10 @@ const initialState = {
 };
 const AddDonor = () => {
   const [formData, setFormData] = useState(initialState);
- // const [donors, setDonors] = useState([]);
+  // const [donors, setDonors] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
- 
-
-  // useEffect(() => {
-  //   donorService.getAll().then((initialDonors) => setDonors(initialDonors));
-  // }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -44,26 +38,28 @@ const AddDonor = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
- const newDonor = { ...formData };
+    setLoading(true);
+
+    const { username, password, ...donorData } = formData;
 
     authService
-      .register(newDonor)
+      .register({
+        username: username.toLowerCase().trim(),
+        password,
+        ...donorData,
+      })
       .then(() => {
         setSuccessMessage("Donor added successfully!");
-
-        // clear form data after adding donor
         setFormData(initialState);
 
-        // hide message after few seconds
-        setTimeout(() => {
-          setSuccessMessage("");
-        }, 3000);
+        setTimeout(() => setSuccessMessage(""), 3000);
       })
       .catch((err) => {
-        setErrorMessage("Something went wrong. Try again");
+        setErrorMessage(
+          err.response?.data?.error || "Something went wrong. Try again",
+        );
+
         setTimeout(() => setErrorMessage(""), 3000);
-        console.error(err);
       })
       .finally(() => setLoading(false));
   };
@@ -87,29 +83,27 @@ const AddDonor = () => {
             {errorMessage}
           </div>
         )}
-        
-  
+
         <form onSubmit={handleSubmit} className="mt-6 space-y-5">
-           <Input
-    id="username"
-    label="Username"
-    type="text"
-    name="username"
-    value={formData.username}
-    onChange={handleChange}
-    required
-  />
+          <Input
+            id="username"
+            label="Username"
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
 
-  <Input
-    id="password"
-    label="Password"
-    type="password"
-    name="password"
-    value={formData.password}
-    onChange={handleChange}
-    required
-  />
-
+          <Input
+            id="password"
+            label="Password"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
 
           {/* NAME */}
           <div>

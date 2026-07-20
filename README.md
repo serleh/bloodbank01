@@ -10,6 +10,30 @@ The platform allows donors to create and manage their profiles, ensuring their i
 
 With Blood Bank, saving lives becomes faster, easier, and more organized.
 
+## Live Demo
+
+You can view the deployed application here:
+
+https://bloodbank01.vercel.app/
+
+## Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home.png)
+
+### Donor Search
+
+![Donor Search](screenshots/search.png)
+
+### Donor Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Blood Info
+
+![Blood Info](screenshots/info.png)
+
 ## Features
 
 ### Current Features

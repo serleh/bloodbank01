@@ -1,10 +1,13 @@
 import React from "react";
 
 const variants = {
-  primary: "bg-red-600 text-white hover:bg-red-700",
-  secondary: "bg-white border border-red-600 text-red-600 hover:bg-red-50",
-  ghost: "bg-transparent text-red-600 hover:bg-red-100",
-  dark: "bg-gray-900 text-white hover:bg-gray-800",
+  primary:
+    "bg-[#C81E3A] text-white shadow-sm hover:bg-[#A81730] active:bg-[#8F1329]",
+  secondary:
+    "bg-white border border-[#C81E3A] text-[#C81E3A] hover:bg-[#FBE9EC]",
+  teal: "bg-[#2F6F62] text-white shadow-sm hover:bg-[#255A4F]",
+  ghost: "bg-transparent text-[#C81E3A] hover:bg-[#FBE9EC]",
+  dark: "bg-[#1B1F23] text-white hover:bg-black",
   empty: "",
 };
 
@@ -16,7 +19,9 @@ const Button = ({
 }) => {
   return (
     <button
-      className={`px-6 py-2 rounded-lg transition ${variants[variant]} ${props.disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm font-sans transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C81E3A] focus-visible:ring-offset-2 ${variants[variant]} ${
+        props.disabled ? "opacity-50 cursor-not-allowed" : ""
+      } ${className}`}
       {...props}
     >
       {children}

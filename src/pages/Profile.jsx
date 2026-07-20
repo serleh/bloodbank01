@@ -40,7 +40,9 @@ const Profile = () => {
 
   if (!form) {
     return (
-      <p className="text-center mt-10 text-gray-500">Loading profile...</p>
+      <div className="min-h-screen bg-[#FBF8F6] flex items-center justify-center">
+        <p className="text-[#5B6168] font-sans">Loading profile...</p>
+      </div>
     );
   }
 
@@ -52,35 +54,39 @@ const Profile = () => {
       .toUpperCase() || "U";
 
   return (
-    <section className="min-h-screen bg-gray-50 py-10 px-4">
-      <div className="max-w-2xl mx-auto space-y-3">
+    <section className="min-h-screen bg-[#FBF8F6] py-10 px-4 font-sans">
+      <div className="max-w-2xl mx-auto space-y-4">
         {/* Hero */}
-        <div className="bg-white border border-gray-100 rounded-2xl px-7 py-6 flex items-center gap-4">
-          <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center text-red-700 font-medium text-lg shrink-0">
+        <div className="bg-white border border-[#E8E1DB] rounded-2xl px-7 py-6 flex items-center gap-4">
+          <div className="w-14 h-14 rounded-full bg-[#FBE9EC] flex items-center justify-center text-[#C81E3A] font-display font-semibold text-lg shrink-0">
             {initials}
           </div>
 
           <div>
-            <p className="text-lg font-medium text-gray-900">Edit Profile</p>
-            <p className="text-sm text-gray-400 mt-0.5">
+            <p className="text-lg font-display font-semibold text-[#1B1F23]">
+              Edit Profile
+            </p>
+            <p className="text-sm text-[#9AA0A6] mt-0.5">
               Keep your donor details up to date
             </p>
           </div>
         </div>
 
         {/* Form card */}
-        <div className="bg-white border border-gray-100 rounded-2xl p-5">
-          <p className="text-sm font-medium mb-1">Personal information</p>
-          <p className="text-xs text-gray-400 mb-4">
+        <div className="bg-white border border-[#E8E1DB] rounded-2xl p-5 md:p-7">
+          <p className="text-sm font-semibold text-[#1B1F23] mb-1">
+            Personal information
+          </p>
+          <p className="text-xs text-[#9AA0A6] mb-5">
             This information is used to match you with nearby requests
           </p>
 
           {message && (
             <div
-              className={`mb-4 text-sm font-medium px-4 py-2.5 rounded-lg border ${
+              className={`mb-5 flex items-center gap-2 text-sm font-medium px-4 py-2.5 rounded-xl border ${
                 message.type === "success"
-                  ? "bg-green-50 text-green-800 border-green-200"
-                  : "bg-red-50 text-red-800 border-red-200"
+                  ? "bg-[#E7F0EE] text-[#2F6F62] border-[#2F6F62]/20"
+                  : "bg-[#FBE9EC] text-[#C81E3A] border-[#C81E3A]/20"
               }`}
             >
               {message.text}
@@ -95,21 +101,18 @@ const Profile = () => {
                 value={form.name}
                 onChange={handleChange}
               />
-
               <Input
                 label="City"
                 name="city"
                 value={form.city}
                 onChange={handleChange}
               />
-
               <Input
                 label="Phone"
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
               />
-
               <Input
                 label="Weight (kg)"
                 name="weight"
@@ -118,14 +121,14 @@ const Profile = () => {
               />
             </div>
 
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-4 pt-2">
               <Button type="submit" disabled={loading}>
                 {loading ? "Saving..." : "Save Changes"}
               </Button>
 
               <Link
                 to="/dashboard"
-                className="text-sm text-gray-400 hover:text-gray-600"
+                className="text-sm text-[#9AA0A6] hover:text-[#5B6168]"
               >
                 Cancel
               </Link>
